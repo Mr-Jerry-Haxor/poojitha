@@ -28,7 +28,7 @@ function Dashboard() {
   return (
     <div>
       <h2>Dashboard</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red' }} role="alert">{error}</p>}
       {data && <p>USER : {data.logged_in_as}</p>}
       <div>
         <h3>Recent Innovations in Generative AI</h3>
@@ -44,16 +44,15 @@ function Dashboard() {
         <p>
           Additionally, AI in journalism and entertainment has grown, with models generating high-quality articles, scripts, and summaries. Meanwhile, ethical concerns around deepfakes, misinformation, and privacy have prompted discussions about regulation and responsible AI use. These innovations are transforming industries, offering new possibilities and raising important questions about the future of AI technology.
         </p>
-        
-        <h4>Technical Aspects</h4>
-        <p>
-          This project is built using a modern tech stack that includes React for the frontend, Django for the backend, and MySQL as the database. The frontend and backend are fully decoupled and communicate through HTTP calls. JWT is used for authentication to ensure secure access to the application. The application is containerized using Docker and managed with docker-compose. NGINX is used to serve the frontend, and the backend runs on port 3000 while the frontend runs on the standard HTTP port (80). The entire project is hosted on a single server and is accessible from any computer at any time.
-        </p>
         <h4>References</h4>
         <ul>
           <li><a href="https://example.com/article1" target="_blank" rel="noopener noreferrer">Example Article 1</a></li>
           <li><a href="https://example.com/article2" target="_blank" rel="noopener noreferrer">Example Article 2</a></li>
         </ul>
+        <h4>Technical Aspects</h4>
+        <p>
+          This project is built using a modern tech stack that includes React for the frontend, Django for the backend, and MySQL as the database. The frontend and backend are fully decoupled and communicate through HTTP calls. JWT is used for authentication to ensure secure access to the application. The application is containerized using Docker and managed with docker-compose. NGINX is used to serve the frontend, and the backend runs on port 3000 while the frontend runs on the standard HTTP port (80). The entire project is hosted on a single server and is accessible from any computer at any time.
+        </p>
       </div>
     </div>
   );

@@ -31,7 +31,9 @@ function Summary() {
     if (chartData && chartRef.current) {
       const svg = d3.select(chartRef.current)
         .attr('width', 500)
-        .attr('height', 300);
+        .attr('height', 300)
+        .attr('role', 'img')
+        .attr('aria-label', 'Summary Chart');
 
       const x = d3.scaleBand()
         .domain(chartData.labels)
@@ -65,7 +67,7 @@ function Summary() {
   return (
     <div>
       <h2>Summary</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red' }} role="alert">{error}</p>}
       <svg ref={chartRef}></svg>
       <p>Explanation of the chart and its source.</p>
     </div>

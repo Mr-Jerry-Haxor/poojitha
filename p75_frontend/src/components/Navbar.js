@@ -12,7 +12,7 @@ function Navbar({ token }) {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Main Navigation">
       <ul className="navbar-list">
         <li className="navbar-item"><Link to="/dashboard" className="navbar-link">Dashboard</Link></li>
         <li className="navbar-item"><Link to="/summary" className="navbar-link">Summary</Link></li>

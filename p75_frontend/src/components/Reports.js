@@ -31,7 +31,9 @@ function Reports() {
     if (chartData && chartRef.current) {
       const svg = d3.select(chartRef.current)
         .attr('width', 500)
-        .attr('height', 300);
+        .attr('height', 300)
+        .attr('role', 'img')
+        .attr('aria-label', 'Reports Chart');
 
       const x = d3.scaleBand()
         .domain(chartData.labels)
@@ -65,7 +67,7 @@ function Reports() {
   return (
     <div>
       <h2>Reports</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red' }} role="alert">{error}</p>}
       <svg ref={chartRef}></svg>
       <p>Explanation of the chart and its source.</p>
     </div>
