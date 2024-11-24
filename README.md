@@ -22,7 +22,7 @@
 ## Navigation and Redirection
 
 - [X] After logging in, users should be **redirected to the dashboard page** and not see the login page again, unless they log out.
-- [ ] All pages of the SPA should include a **top menu** with links to the **Dashboard**, **Summary**, and **Reports** pages.
+- [X] All pages of the SPA should include a **top menu** with links to the **Dashboard**, **Summary**, and **Reports** pages.
 - [X] Add a **logout button** in the top menu.
 - [X] Attempting to access the **Dashboard**, **Summary**, or **Reports** pages without logging in should **redirect users to the login page**.
 
