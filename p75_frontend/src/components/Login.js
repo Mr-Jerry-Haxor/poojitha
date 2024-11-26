@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import './css/Login.css';
 
 function Login({ setToken }) {
@@ -15,8 +16,10 @@ function Login({ setToken }) {
       const response = await axios.post('http://localhost:8000/login', { username, password });
       setToken(response.data.access_token);
       history.push('/dashboard');
+      toast.success('Login successful!');
     } catch (error) {
       setError('Login failed. Please check your username and password.');
+      toast.error('Login failed. Please check your username and password.');
       console.error('Login failed', error);
     }
   };

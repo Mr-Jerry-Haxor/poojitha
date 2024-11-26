@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Dashboard() {
   const [data, setData] = useState(null);
@@ -10,6 +11,7 @@ function Dashboard() {
       const token = localStorage.getItem('token');
       if (!token) {
         setError('No token found');
+        toast.error('No token found');
         return;
       }
       try {
@@ -19,6 +21,7 @@ function Dashboard() {
         setData(response.data);
       } catch (error) {
         setError('Failed to fetch data');
+        toast.error('Failed to fetch data');
         console.error('Error fetching dashboard data', error);
       }
     };
@@ -51,7 +54,7 @@ function Dashboard() {
         </ul>
         <h4>Technical Aspects</h4>
         <p>
-          This project is built using a modern tech stack that includes React for the frontend, Django for the backend, and MySQL as the database. The frontend and backend are fully decoupled and communicate through HTTP calls. JWT is used for authentication to ensure secure access to the application. The application is containerized using Docker and managed with docker-compose. NGINX is used to serve the frontend, and the backend runs on port 3000 while the frontend runs on the standard HTTP port (80). The entire project is hosted on a single server and is accessible from any computer at any time.
+          This project is built using a modern tech stack that includes React for the frontend, PYTHON-FLASK for the backend, and MySQL as the database. The frontend and backend are fully decoupled and communicate through HTTP calls. JWT is used for authentication to ensure secure access to the application. NGINX is used to serve the frontend, and the backend runs on port 3000 while the frontend runs on the standard HTTP port (80). The entire project is hosted on a single server and is accessible from any computer at any time.
         </p>
       </div>
     </div>

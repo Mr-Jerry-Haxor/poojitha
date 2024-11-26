@@ -30,9 +30,9 @@
 
 ## Dashboard
 
-- [ ] The dashboard page must contain a **200-word summary** of the selected topic.
+- [X] The dashboard page must contain a **200-word summary** of the selected topic.
 - [ ] Include a **reference (URL)** for the source of your content.
-- [ ] Below the summary, add a paragraph describing the **technical aspects** of your project, such as the tech stack and infrastructure.
+- [X] Below the summary, add a paragraph describing the **technical aspects** of your project, such as the tech stack and infrastructure.
 
 ---
 
@@ -86,13 +86,13 @@
 
 ## Technical Aspects
 
-- [ ] The **backend** should be written in **Python**.
-- [ ] The **frontend** should be written in **React**.
+- [X] The **backend** should be written in **Python**.
+- [X] The **frontend** should be written in **React**.
 - [ ] Use **MySQL** as the database.
-- [ ] Use **JWT** for authentication.
+- [X] Use **JWT** for authentication.
 - [ ] Use **NGINX** to serve the frontend.
 - [ ] Use any **charting library** (e.g., **D3.js**) for the dynamic charts.
-- [ ] Use the **latest versions** of the languages and libraries you choose.
+- [X] Use the **latest versions** of the languages and libraries you choose.
 - [ ] Use **Docker** to containerize the app.
 - [ ] Use **docker-compose** to manage the containers.
 - [ ] Use a **bash script** to automate the deployment process.

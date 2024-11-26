@@ -1,6 +1,6 @@
 Database :  MYSQL
 Frontend :  REACT
-Backend  :  PYTHON-Django
+Backend  :  PYTHON-Flask
 Topic    :  Recent innovations in Generative AI from the last 6 months
 
 
