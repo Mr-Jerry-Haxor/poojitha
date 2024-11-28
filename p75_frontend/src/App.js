@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Summary from './components/Summary';
 import Reports from './components/Reports';
+import Admin from './components/Admin';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import useToken from './components/useToken';
@@ -33,6 +34,7 @@ function App() {
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/summary" component={Summary} />
           <PrivateRoute path="/reports" component={Reports} />
+          <PrivateRoute path="/admin" component={Admin} />
           <Route exact path="/">
             {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
           </Route>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -12,6 +12,11 @@ function Login({ setToken }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!username || !password) {
+      setError('Username and password cannot be empty.');
+      toast.error('Username and password cannot be empty.');
+      return;
+    }
     try {
       const response = await axios.post('http://localhost:8000/login', { username, password });
       setToken(response.data.access_token);
@@ -24,21 +29,48 @@ function Login({ setToken }) {
     }
   };
 
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+        handleSubmit(e);
+      }
+    };
+
+    window.addEventListener('keypress', handleKeyPress);
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+    };
+  }, [username, password]);
+
   return (
+    <div className="login-page">
     <div className="login-container">
       <h2 className="login-title">Login</h2>
       <form onSubmit={handleSubmit} className="login-form" aria-label="Login Form">
         <div className="form-group">
           <label htmlFor="username">Username:</label>
-          <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input 
+            type="text" 
+            id="username" 
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+            required 
+          />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input 
+            type="password" 
+            id="password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+          />
         </div>
         <button type="submit" className="login-button">Login</button>
       </form>
       {error && <p className="error-message" role="alert">{error}</p>}
+    </div>
     </div>
   );
 }
