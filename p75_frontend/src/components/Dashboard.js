@@ -51,9 +51,6 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <h2>Dashboard</h2>
-      <div className="user-info">
-        <p>Logged in as: {data?.logged_in_as}</p>
-      </div>
       <div className="content-container">
         {data?.contents?.map((content, index) => (
           <div key={content.id || index} className="content-wrapper">

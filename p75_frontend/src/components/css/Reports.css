@@ -20,10 +20,7 @@
   margin: 20px 0;
 }
 
-.chart {
-  max-width: 100%;
-  height: auto;
-}
+
 
 .axis-label {
   font-size: 12px;
@@ -74,3 +71,4 @@
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
