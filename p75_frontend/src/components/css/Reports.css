@@ -7,10 +7,8 @@
 .item-container {
   margin-bottom: 30px;
   padding: 20px;
-  border: 1px solid #eee;
-  border-radius: 8px;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: justify !important;
 }
 
 .chart-container {
@@ -69,6 +67,10 @@
   background: white;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.chart-caption {
+  font-size: 12px;
+  fill: #666;
+  width: 100%;
+}

@@ -26,7 +26,7 @@ function Summary() {
         setItems(response.data.items);
       } catch (error) {
         setError('Failed to fetch data');
-        console.error('Error fetching summary data', error);
+        console.error('Error fetching Summary data', error);
       }
       setLoading(false);
     };
@@ -120,7 +120,7 @@ function Summary() {
       .attr('y', d => y(d))
       .attr('height', d => height - y(d));
 
-    // Add title
+    // Add chart title inside the SVG
     g.append('text')
       .attr('class', 'chart-title')
       .attr('x', width / 2)
@@ -132,15 +132,28 @@ function Summary() {
     g.append('text')
       .attr('class', 'axis-label')
       .attr('x', width / 2)
-      .attr('y', height + margin.bottom - 10)
+      .attr('y', height + margin.bottom - 30)
       .attr('text-anchor', 'middle')
       .text(config.series[0].name);
+
+    // Add caption inside the SVG
+    if (config.caption) {
+      console.log('Caption:', config.caption); // Debug log
+      g.append('text')
+        .attr('class', 'chart-caption')
+        .attr('x', width / 2)
+        .attr('y', height + margin.bottom - 10)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '12px')
+        .style('fill', '#555')
+        .text(config.caption);
+    }
   };
 
   const renderLineChart = (svg, config) => {
     const margin = { top: 40, right: 20, bottom: 60, left: 60 };
     const width = 500 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
+    const height = 300 - margin.top - margin.bottom + 70;
 
     const g = svg
       .attr('width', width + margin.left + margin.right)
@@ -200,7 +213,7 @@ function Summary() {
       .attr('r', 4)
       .attr('fill', config.colors?.[0] || '#2196F3');
 
-    // Add title
+    // Add chart title inside the SVG
     g.append('text')
       .attr('class', 'chart-title')
       .attr('x', width / 2)
@@ -212,21 +225,29 @@ function Summary() {
     g.append('text')
       .attr('class', 'axis-label')
       .attr('x', width / 2)
-      .attr('y', height + margin.bottom - 10)
+      .attr('y', height + margin.bottom - 30)
       .attr('text-anchor', 'middle')
       .text(config.series[0].name);
+
+    // Add caption inside the SVG
+    if (config.caption) {
+      g.append('text')
+        .attr('class', 'chart-caption')
+        .attr('x', width / 2)
+        .attr('y', height + margin.bottom - 10)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '12px')
+        .style('fill', '#555')
+        .text(config.caption);
+    }
   };
 
   const renderPieChart = (svg, config) => {
     const width = 500;
     const height = 300;
     const radius = Math.min(width, height) / 2;
-    const margin = { top: 40, right: 20, bottom: 60, left: 60 };
 
-    const g = svg
-      .attr('width', width)
-      .attr('height', height)
-      .append('g')
+    const g = svg.append('g')
       .attr('transform', `translate(${width / 2},${height / 2})`);
 
     const pie = d3.pie()
@@ -242,7 +263,6 @@ function Summary() {
       .append('g')
       .attr('class', 'arc');
 
-    // Add slices with animation
     arcs.append('path')
       .attr('d', arc)
       .style('fill', (d, i) => config.colors[i])
@@ -259,7 +279,6 @@ function Summary() {
           .attr('stroke', 'none');
       });
 
-    // Add labels
     arcs.append('text')
       .attr('transform', d => `translate(${arc.centroid(d)})`)
       .attr('dy', '.35em')
@@ -267,35 +286,25 @@ function Summary() {
       .style('fill', '#fff')
       .text(d => `${d.data.name}: ${d.data.value}%`);
 
-    // Add title
-    svg.append('text')
+    // Add chart title inside the SVG
+    g.append('text')
       .attr('class', 'chart-title')
-      .attr('x', width / 2)
-      .attr('y', 20)
+      .attr('x', 0)
+      .attr('y', -radius + 20)
       .attr('text-anchor', 'middle')
       .text(config.title);
 
-    // Add legend
-    const legend = svg.append('g')
-      .attr('class', 'legend')
-      .attr('transform', `translate(${width - 120}, ${height - 100})`);
-
-    config.series[0].data.forEach((d, i) => {
-      const legendRow = legend.append('g')
-        .attr('transform', `translate(0, ${i * 20})`);
-        
-      legendRow.append('rect')
-        .attr('width', 10)
-        .attr('height', 10)
-        .style('fill', config.colors[i]);
-        
-      legendRow.append('text')
-        .attr('x', 20)
-        .attr('y', 10)
-        .attr('text-anchor', 'start')
+    // Add caption inside the SVG
+    if (config.caption) {
+      g.append('text')
+        .attr('class', 'chart-caption')
+        .attr('x', 0)
+        .attr('y', radius - 30)
+        .attr('text-anchor', 'middle')
         .style('font-size', '12px')
-        .text(d.name);
-    });
+        .style('fill', '#555')
+        .text(config.caption);
+    }
   };
 
   const renderContent = (content) => {

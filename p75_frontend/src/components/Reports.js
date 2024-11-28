@@ -66,7 +66,7 @@ function Reports() {
   const renderBarChart = (svg, config) => {
     const margin = { top: 40, right: 20, bottom: 60, left: 60 };
     const width = 500 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom + 70;
+    const height = 300 - margin.top - margin.bottom;
 
     const g = svg
       .attr('width', width + margin.left + margin.right)
@@ -142,7 +142,7 @@ function Reports() {
       g.append('text')
         .attr('class', 'chart-caption')
         .attr('x', width / 2)
-        .attr('y', height + margin.bottom - 20)
+        .attr('y', height + margin.bottom - 10)
         .attr('text-anchor', 'middle')
         .style('font-size', '12px')
         .style('fill', '#555')
@@ -225,7 +225,7 @@ function Reports() {
     g.append('text')
       .attr('class', 'axis-label')
       .attr('x', width / 2)
-      .attr('y', height + margin.bottom - 10)
+      .attr('y', height + margin.bottom - 30)
       .attr('text-anchor', 'middle')
       .text(config.series[0].name);
 
@@ -234,7 +234,7 @@ function Reports() {
       g.append('text')
         .attr('class', 'chart-caption')
         .attr('x', width / 2)
-        .attr('y', height + margin.bottom + 20)
+        .attr('y', height + margin.bottom - 10)
         .attr('text-anchor', 'middle')
         .style('font-size', '12px')
         .style('fill', '#555')
@@ -290,7 +290,7 @@ function Reports() {
     g.append('text')
       .attr('class', 'chart-title')
       .attr('x', 0)
-      .attr('y', -radius - 20)
+      .attr('y', -radius + 20)
       .attr('text-anchor', 'middle')
       .text(config.title);
 
@@ -299,7 +299,7 @@ function Reports() {
       g.append('text')
         .attr('class', 'chart-caption')
         .attr('x', 0)
-        .attr('y', radius + 30)
+        .attr('y', radius - 30)
         .attr('text-anchor', 'middle')
         .style('font-size', '12px')
         .style('fill', '#555')
