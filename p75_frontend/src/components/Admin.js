@@ -22,6 +22,58 @@ function Admin() {
   const pageTypes = ['dashboard', 'summary', 'reports'];
   const chartTypes = ['bar', 'line', 'pie'];
 
+  const sampleChartData = {
+    bar: JSON.stringify({
+      chart: {
+        type: 'bar',
+        series: [{
+          data: [65, 59, 80, 81, 56],
+          name: 'AI Models Released',
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+        }],
+        yScale: {
+          minimum: 0,
+          maximum: 100
+        },
+        title: 'Monthly AI Model Releases',
+        colors: ['#4CAF50'],
+        caption: 'This bar chart shows the number of AI models released each month, highlighting the trends over a 5-month period.'
+      }
+    }, null, 2),
+    line: JSON.stringify({
+      chart: {
+        type: 'line',
+        series: [{
+          data: [28, 48, 40, 19, 86],
+          name: 'Performance Improvements',
+          labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+        }],
+        yScale: {
+          minimum: 0,
+          maximum: 100
+        },
+        title: 'AI Model Performance Trends',
+        colors: ['#2196F3'],
+        caption: 'This line chart illustrates the performance improvements of AI models from June to October, showcasing significant fluctuations.'
+      }
+    }, null, 2),
+    pie: JSON.stringify({
+      chart: {
+        type: 'pie',
+        series: [{
+          data: [
+            { name: 'Language Models', value: 45 },
+            { name: 'Vision Models', value: 25 },
+            { name: 'Multimodal Models', value: 30 }
+          ]
+        }],
+        title: 'AI Model Types Distribution',
+        colors: ['#FF9800', '#9C27B0', '#E91E63'],
+        caption: 'This pie chart shows the distribution of AI models by type, with the largest portion dedicated to Language Models.'
+      }
+    }, null, 2)
+  };
+
   useEffect(() => {
     fetchData();
   }, [pageType]);
@@ -176,6 +228,11 @@ function Admin() {
     }
   };
 
+  const handleChartTypeChange = (e) => {
+    setChartType(e.target.value);
+    setChartData(sampleChartData[e.target.value]);
+  };
+
   return (
     <div className="admin-container">
       <h2>Content Management</h2>
@@ -233,7 +290,7 @@ function Admin() {
             <select 
               id="chartType" 
               value={chartType} 
-              onChange={(e) => setChartType(e.target.value)}
+              onChange={handleChartTypeChange}
             >
               {chartTypes.map(type => (
                 <option key={type} value={type}>{type}</option>
