@@ -319,7 +319,7 @@ function Summary() {
   if (error) return <p style={{ color: 'red' }} role="alert">{error}</p>;
 
   return (
-    <div className="summary-container">
+    <div className="summary-container"  role="main">
       <h2>Summary</h2>
       {items.map((item) => (
         <div key={`${item.type}-${item.data.id}`} className="item-container">

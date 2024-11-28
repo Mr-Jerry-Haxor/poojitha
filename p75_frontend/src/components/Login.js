@@ -55,6 +55,8 @@ function Login({ setToken }) {
             value={username} 
             onChange={(e) => setUsername(e.target.value)} 
             required 
+            aria-required="true"
+            aria-label="Username"
           />
         </div>
         <div className="form-group">
@@ -65,9 +67,11 @@ function Login({ setToken }) {
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
             required 
+            aria-required="true"
+            aria-label="Password"
           />
         </div>
-        <button type="submit" className="login-button">Login</button>
+        <button type="submit" className="login-button" aria-label="Login">Login</button>
       </form>
       {error && <p className="error-message" role="alert">{error}</p>}
     </div>

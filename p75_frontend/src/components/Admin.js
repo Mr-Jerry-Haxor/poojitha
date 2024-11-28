@@ -215,7 +215,6 @@ function Admin() {
     setPageType(item.page_type);
     setOrderId(item.order_id);
     setChartType(item.chart_type);
-    console.log(item.chart_data);
     setChartData(item.chart_data);
   };
 
@@ -243,15 +242,16 @@ function Admin() {
   };
 
   return (
-    <div className="admin-container">
+    <div className="admin-container" role="main">
       <h2>Content Management</h2>
-      <form onSubmit={handleSubmitContent}>
+      <form onSubmit={handleSubmitContent} aria-label="Content Management Form">
         <div className="form-group">
           <label htmlFor="pageType">Page Type:</label>
           <select 
             id="pageType" 
             value={pageType} 
             onChange={(e) => setPageType(e.target.value)}
+            aria-label="Select Page Type"
           >
             {pageTypes.map(type => (
               <option key={type} value={type}>{type}</option>
@@ -268,38 +268,41 @@ function Admin() {
             onChange={(e) => setOrderId(parseInt(e.target.value))}
             min="1"
             required
+            aria-label="Order ID"
           />
         </div>
 
         <div className="form-group">
-          <label>Content:</label>
+          <label htmlFor="contentEditor">Content:</label>
           <Editor
             editorState={editorState}
             wrapperClassName="editor-wrapper"
             editorClassName="editor"
             toolbarClassName="toolbar"
             onEditorStateChange={setEditorState}
+            aria-label="Content Editor"
           />
         </div>
 
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button" aria-label={editMode === 'content' ? 'Update Content' : 'Add Content'}>
           {editMode === 'content' ? 'Update' : 'Add'} Content
         </button>
         {editMode === 'content' && (
-          <button type="button" onClick={resetForm} className="cancel-button">
+          <button type="button" onClick={resetForm} className="cancel-button" aria-label="Cancel Edit">
             Cancel
           </button>
         )}
       </form>
 
       {pageType !== 'dashboard' && (
-        <form onSubmit={handleSubmitChart}>
+        <form onSubmit={handleSubmitChart} aria-label="Chart Management Form">
           <div className="form-group">
             <label htmlFor="chartType">Chart Type:</label>
             <select 
               id="chartType" 
               value={chartType} 
               onChange={handleChartTypeChange}
+              aria-label="Select Chart Type"
             >
               {chartTypes.map(type => (
                 <option key={type} value={type}>{type}</option>
@@ -315,14 +318,15 @@ function Admin() {
               onChange={(e) => setChartData(e.target.value)}
               rows="10"
               required
+              aria-label="Chart Data"
             />
           </div>
 
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" aria-label={editMode === 'chart' ? 'Update Chart' : 'Add Chart'}>
             {editMode === 'chart' ? 'Update' : 'Add'} Chart
           </button>
           {editMode === 'chart' && (
-            <button type="button" onClick={resetForm} className="cancel-button">
+            <button type="button" onClick={resetForm} className="cancel-button" aria-label="Cancel Edit">
               Cancel
             </button>
           )}
@@ -331,13 +335,13 @@ function Admin() {
 
       <div className="data-tables">
         <h3>Existing Content</h3>
-        <table>
+        <table role="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Page Type</th>
-              <th>Order ID</th>
-              <th>Actions</th>
+              <th scope="col">ID</th>
+              <th scope="col">Page Type</th>
+              <th scope="col">Order ID</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -347,8 +351,8 @@ function Admin() {
                 <td>{item.page_type}</td>
                 <td>{item.order_id}</td>
                 <td>
-                  <button onClick={() => handleEditContent(item)}>Edit</button>
-                  <button onClick={() => handleDelete(item.id, 'content')}>Delete</button>
+                  <button onClick={() => handleEditContent(item)} aria-label={`Edit content ${item.id}`}>Edit</button>
+                  <button onClick={() => handleDelete(item.id, 'content')} aria-label={`Delete content ${item.id}`}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -358,14 +362,14 @@ function Admin() {
         {pageType !== 'dashboard' && (
           <>
             <h3>Existing Charts</h3>
-            <table>
+            <table role="table">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Page Type</th>
-                  <th>Chart Type</th>
-                  <th>Order ID</th>
-                  <th>Actions</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Page Type</th>
+                  <th scope="col">Chart Type</th>
+                  <th scope="col">Order ID</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -376,8 +380,8 @@ function Admin() {
                     <td>{item.chart_type}</td>
                     <td>{item.order_id}</td>
                     <td>
-                      <button onClick={() => handleEditChart(item)}>Edit</button>
-                      <button onClick={() => handleDelete(item.id, 'chart')}>Delete</button>
+                      <button onClick={() => handleEditChart(item)} aria-label={`Edit chart ${item.id}`}>Edit</button>
+                      <button onClick={() => handleDelete(item.id, 'chart')} aria-label={`Delete chart ${item.id}`}>Delete</button>
                     </td>
                   </tr>
                 ))}

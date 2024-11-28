@@ -49,7 +49,7 @@ function Dashboard() {
   if (error) return <p className="error" role="alert">{error}</p>;
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container" role="main">
       <h2>Dashboard</h2>
       <div className="content-container">
         {data?.contents?.map((content, index) => (

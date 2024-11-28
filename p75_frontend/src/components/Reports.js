@@ -319,7 +319,7 @@ function Reports() {
   if (error) return <p style={{ color: 'red' }} role="alert">{error}</p>;
 
   return (
-    <div className="reports-container">
+    <div className="reports-container"  role="main">
       <h2>Reports</h2>
       {items.map((item) => (
         <div key={`${item.type}-${item.data.id}`} className="item-container">
