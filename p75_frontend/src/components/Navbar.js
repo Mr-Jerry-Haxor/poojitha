@@ -17,6 +17,7 @@ function Navbar({ token }) {
         <li className="navbar-item"><Link to="/dashboard" className="navbar-link">Dashboard</Link></li>
         <li className="navbar-item"><Link to="/summary" className="navbar-link">Summary</Link></li>
         <li className="navbar-item"><Link to="/reports" className="navbar-link">Reports</Link></li>
+        <li className="navbar-item"><Link to="/admin" className="navbar-link">Admin</Link></li>
         <li className="navbar-item"><button onClick={handleLogout} className="navbar-button">Logout</button></li>
       </ul>
     </nav>
