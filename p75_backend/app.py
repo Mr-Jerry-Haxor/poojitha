@@ -7,6 +7,7 @@ from mysql.connector import pooling
 import json
 from dotenv import load_dotenv
 import os
+import hashlib
 
 # Load environment variables
 load_dotenv()
@@ -83,9 +84,13 @@ def login():
         cursor.execute("SELECT * FROM users WHERE username = %s", (data['username'],))
         user = cursor.fetchone()
         
-        if user and user['password'] == data['password']:
-            access_token = create_access_token(identity=user['username'])
-            return jsonify(access_token=access_token)
+        if user:
+            hashed_password = hashlib.sha512(data['password'].encode('utf-8')).hexdigest()
+            print(f"Hashed password: {hashed_password}")
+            print(f"Database password: {user['password']}")
+            if user['password'] == hashed_password:
+                access_token = create_access_token(identity=user['username'])
+                return jsonify(access_token=access_token)
         return jsonify({"msg": "Bad username or password"}), 401
     except Exception as e:
         print(f"Database error: {e}")
@@ -423,7 +428,7 @@ if __name__ == '__main__':
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 username VARCHAR(80) UNIQUE NOT NULL,
-                password VARCHAR(80) NOT NULL,
+                password VARCHAR(257) NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
@@ -459,7 +464,7 @@ if __name__ == '__main__':
         print("Checking for default user...")
         cursor.execute("SELECT * FROM users WHERE username = 'p75'")
         if not cursor.fetchone():
-            cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", ('p75', 'p75'))
+            cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", ('p75', '3433bafa203abbf94fde49a1e3fa0259f7e59af69b186ebf5e2507b4c5ff59b8b1737577f5b2436b777bf453f55dc4c29a5f1f12715364d27034262ebe401d71'))
             conn.commit()
             print("Default user created successfully")
         
@@ -476,4 +481,4 @@ if __name__ == '__main__':
         cursor.close()
         conn.close()
         
-    app.run(port=8000)
+    app.run(port=3000)
