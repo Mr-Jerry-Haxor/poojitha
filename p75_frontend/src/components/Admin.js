@@ -110,11 +110,11 @@ function Admin() {
     const content = JSON.stringify(contentState);
     
     try {
-      const endpoint = editMode ? 
+      const endpoint = editMode === 'content' ? 
         `http://localhost:8000/admin/content/${editId}` : 
         'http://localhost:8000/admin/add_content';
 
-      const method = editMode ? 'PUT' : 'POST';
+      const method = editMode === 'content' ? 'PUT' : 'POST';
 
       const data = {
         page_type: pageType,
@@ -132,7 +132,7 @@ function Admin() {
         }
       });
 
-      toast.success(`Content ${editMode ? 'updated' : 'added'} successfully!`);
+      toast.success(`Content ${editMode === 'content' ? 'updated' : 'added'} successfully!`);
       resetForm();
       fetchData();
     } catch (error) {
@@ -151,11 +151,11 @@ function Admin() {
     }
     
     try {
-      const endpoint = editMode ? 
+      const endpoint = editMode === 'chart' ? 
         `http://localhost:8000/admin/chart/${editId}` : 
         'http://localhost:8000/admin/add_chart';
 
-      const method = editMode ? 'PUT' : 'POST';
+      const method = editMode === 'chart' ? 'PUT' : 'POST';
 
       const data = {
         page_type: pageType,
@@ -174,7 +174,7 @@ function Admin() {
         }
       });
 
-      toast.success(`Chart ${editMode ? 'updated' : 'added'} successfully!`);
+      toast.success(`Chart ${editMode === 'chart' ? 'updated' : 'added'} successfully!`);
       resetForm();
       fetchData();
     } catch (error) {
@@ -202,7 +202,11 @@ function Admin() {
     setOrderId(item.order_id);
     
     if (type === 'content') {
-      const contentState = ContentState.createFromHTML(item.html_content);
+      const blocksFromHTML = convertFromHTML(item.html_content);
+      const contentState = ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      );
       setEditorState(EditorState.createWithContent(contentState));
     } else {
       setChartType(item.chart_type);
@@ -274,9 +278,9 @@ function Admin() {
         </div>
 
         <button type="submit" className="submit-button">
-          {editMode ? 'Update' : 'Add'} Content
+          {editMode === 'content' ? 'Update' : 'Add'} Content
         </button>
-        {editMode && (
+        {editMode === 'content' && (
           <button type="button" onClick={resetForm} className="cancel-button">
             Cancel
           </button>
@@ -310,9 +314,9 @@ function Admin() {
           </div>
 
           <button type="submit" className="submit-button">
-            {editMode ? 'Update' : 'Add'} Chart
+            {editMode === 'chart' ? 'Update' : 'Add'} Chart
           </button>
-          {editMode && (
+          {editMode === 'chart' && (
             <button type="button" onClick={resetForm} className="cancel-button">
               Cancel
             </button>
