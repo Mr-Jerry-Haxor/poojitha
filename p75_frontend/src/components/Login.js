@@ -18,7 +18,7 @@ function Login({ setToken }) {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:3000/login', { username, password });
+      const response = await axios.post('http://100.28.69.128:3000//login', { username, password });
       setToken(response.data.access_token);
       history.push('/dashboard');
       toast.success('Login successful!');

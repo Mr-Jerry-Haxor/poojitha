@@ -19,7 +19,7 @@ function Reports() {
         return;
       }
       try {
-        const response = await axios.get('http://localhost:3000/reports', {
+        const response = await axios.get('http://100.28.69.128:3000//reports', {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('API Response:', response.data); // Debug log

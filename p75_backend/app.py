@@ -233,7 +233,7 @@ def reports():
         cursor.close()
         conn.close()
         
-        
+  
 
 # Admin Routes
 @app.route('/admin/contents/<page_type>', methods=['GET'])
