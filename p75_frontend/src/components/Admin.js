@@ -195,23 +195,28 @@ function Admin() {
     }
   };
 
-  const handleEdit = (item, type) => {
-    setEditMode(type);
+  const handleEditContent = (item) => {
+    setEditMode('content');
     setEditId(item.id);
     setPageType(item.page_type);
     setOrderId(item.order_id);
     
-    if (type === 'content') {
-      const blocksFromHTML = convertFromHTML(item.html_content);
-      const contentState = ContentState.createFromBlockArray(
-        blocksFromHTML.contentBlocks,
-        blocksFromHTML.entityMap
-      );
-      setEditorState(EditorState.createWithContent(contentState));
-    } else {
-      setChartType(item.chart_type);
-      setChartData(JSON.stringify(item.chart_data, null, 2));
-    }
+    const blocksFromHTML = convertFromHTML(item.html_content);
+    const contentState = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap
+    );
+    setEditorState(EditorState.createWithContent(contentState));
+  };
+
+  const handleEditChart = (item) => {
+    setEditMode('chart');
+    setEditId(item.id);
+    setPageType(item.page_type);
+    setOrderId(item.order_id);
+    setChartType(item.chart_type);
+    console.log(item.chart_data);
+    setChartData(item.chart_data);
   };
 
   const resetForm = () => {
@@ -342,7 +347,7 @@ function Admin() {
                 <td>{item.page_type}</td>
                 <td>{item.order_id}</td>
                 <td>
-                  <button onClick={() => handleEdit(item, 'content')}>Edit</button>
+                  <button onClick={() => handleEditContent(item)}>Edit</button>
                   <button onClick={() => handleDelete(item.id, 'content')}>Delete</button>
                 </td>
               </tr>
@@ -371,7 +376,7 @@ function Admin() {
                     <td>{item.chart_type}</td>
                     <td>{item.order_id}</td>
                     <td>
-                      <button onClick={() => handleEdit(item, 'chart')}>Edit</button>
+                      <button onClick={() => handleEditChart(item)}>Edit</button>
                       <button onClick={() => handleDelete(item.id, 'chart')}>Delete</button>
                     </td>
                   </tr>
