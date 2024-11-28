@@ -19,7 +19,7 @@ function Summary() {
         return;
       }
       try {
-        const response = await axios.get('http://localhost:8000/summary', {
+        const response = await axios.get('http://localhost:3000/summary', {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('API Response:', response.data); // Debug log

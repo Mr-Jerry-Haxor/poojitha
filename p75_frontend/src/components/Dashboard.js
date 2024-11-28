@@ -19,7 +19,7 @@ function Dashboard() {
         return;
       }
       try {
-        const response = await axios.get('http://localhost:8000/dashboard', {
+        const response = await axios.get('http://localhost:3000/dashboard', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setData(response.data);
