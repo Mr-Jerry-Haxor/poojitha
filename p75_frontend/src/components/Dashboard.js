@@ -19,7 +19,7 @@ function Dashboard() {
         return;
       }
       try {
-        const response = await axios.get('https://poojitha.devhost.my/api/dashboard', {
+        const response = await axios.get('http://poojitha.devhost.my:3000/dashboard', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setData(response.data);
