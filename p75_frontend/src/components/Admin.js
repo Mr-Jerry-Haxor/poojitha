@@ -82,10 +82,10 @@ function Admin() {
     try {
       const token = localStorage.getItem('token');
       const [contentsRes, chartsRes] = await Promise.all([
-        axios.get(`http://100.28.69.128:3000//admin/contents/${pageType}`, {
+        axios.get(`https://poojitha.devhost.my/api/admin/contents/${pageType}`, {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get(`http://100.28.69.128:3000//admin/charts/${pageType}`, {
+        axios.get(`https://poojitha.devhost.my/api/admin/charts/${pageType}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -111,8 +111,8 @@ function Admin() {
     
     try {
       const endpoint = editMode === 'content' ? 
-        `http://100.28.69.128:3000//admin/content/${editId}` : 
-        'http://100.28.69.128:3000//admin/add_content';
+        `https://poojitha.devhost.my/api/admin/content/${editId}` : 
+        'https://poojitha.devhost.my/api/admin/add_content';
 
       const method = editMode === 'content' ? 'PUT' : 'POST';
 
@@ -152,8 +152,8 @@ function Admin() {
     
     try {
       const endpoint = editMode === 'chart' ? 
-        `http://100.28.69.128:3000//admin/chart/${editId}` : 
-        'http://100.28.69.128:3000//admin/add_chart';
+        `https://poojitha.devhost.my/api/admin/chart/${editId}` : 
+        'https://poojitha.devhost.my/api/admin/add_chart';
 
       const method = editMode === 'chart' ? 'PUT' : 'POST';
 
@@ -185,7 +185,7 @@ function Admin() {
   const handleDelete = async (id, type) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://100.28.69.128:3000//admin/${type}/${id}`, {
+      await axios.delete(`https://poojitha.devhost.my/api/admin/${type}/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Deleted successfully!');
