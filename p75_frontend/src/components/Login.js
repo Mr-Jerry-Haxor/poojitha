@@ -18,7 +18,7 @@ function Login({ setToken }) {
       return;
     }
     try {
-      const response = await axios.post('http://poojithabackend.devhost.my:3000/login', { username, password });
+      const response = await axios.post('https://poojithabackend.devhost.my/login', { username, password });
       setToken(response.data.access_token);
       history.push('/dashboard');
       toast.success('Login successful!');
