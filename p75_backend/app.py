@@ -481,4 +481,4 @@ if __name__ == '__main__':
         cursor.close()
         conn.close()
         
-    app.run(host="0.0.0.0",port=3000)
+    app.run(host="0.0.0.0",port=3000, ssl_context=('/etc/ssl/devhost.pem', '/etc/ssl/devhost.key'))
