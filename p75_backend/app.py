@@ -234,7 +234,7 @@ def reports():
         conn.close()
         
   
-@app.route('')
+@app.route('/')
 def home():
     return jsonify({"msg": "Welcome to P75 Backend!"})
 
