@@ -47,7 +47,7 @@ function Welcome() {
         <section className="about">
           <h2>Pioneering the Future</h2>
           <p>
-            Embark on a journey through the cutting-edge world of Generative AI. This project, developed and deployed by  <span className='developer'>POOJITHA</span>,  showcases the latest advancements that are reshaping our digital landscape.
+            Embark on a journey through the cutting-edge world of Generative AI. This project, developed and deployed by <span className='developer'>POOJITHA</span>, showcases the latest advancements that are reshaping our digital landscape.
           </p>
           <Sparkles className="sparkle1" />
           <Sparkles className="sparkle2" />
@@ -60,16 +60,16 @@ function Welcome() {
               Enter <ChevronRight className="icon" />
             </Link>
           </div>
-          <div className={styles.ctaVisual}>
-            <div className={styles.neuralNetwork}>
+          <div className="ctaVisual">
+            <div className="neuralNetwork">
               {[...Array(15)].map((_, i) => (
-                <div key={i} className={styles.node} style={{
+                <div key={i} className="node" style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 2}s`
                 }}>
                   {[...Array(3)].map((_, j) => (
-                    <div key={j} className={styles.link} style={{
+                    <div key={j} className="link" style={{
                       width: `${50 + Math.random() * 100}px`,
                       transform: `rotate(${Math.random() * 360}deg)`
                     }}></div>
@@ -81,7 +81,7 @@ function Welcome() {
         </section>
       </main>
       <footer className="footer">
-        <p>&copy; 2024 Poojitha </p>
+        <p>&copy; 2024 Poojitha</p>
       </footer>
     </div>
   );

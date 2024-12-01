@@ -44,37 +44,40 @@ function Login({ setToken }) {
 
   return (
     <div className="login-page">
-    <div className="login-container">
-      <h2 className="login-title">Login</h2>
-      <form onSubmit={handleSubmit} className="login-form" aria-label="Login Form">
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input 
-            type="text" 
-            id="username" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            required 
-            aria-required="true"
-            aria-label="Username"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input 
-            type="password" 
-            id="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-            aria-required="true"
-            aria-label="Password"
-          />
-        </div>
-        <button type="submit" className="login-button" aria-label="Login">Login</button>
-      </form>
-      {error && <p className="error-message" role="alert">{error}</p>}
-    </div>
+      <div className="login-container">
+        <h2 className="login-title">Login</h2>
+        <form onSubmit={handleSubmit} className="login-form" aria-label="Login Form">
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input 
+              type="text" 
+              id="username" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)} 
+              required 
+              aria-required="true"
+              aria-label="Username"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input 
+              type="password" 
+              id="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+              aria-required="true"
+              aria-label="Password"
+            />
+          </div>
+          <button type="submit" className="login-button" aria-label="Login">Login</button>
+          <a href="/" className="back-link">
+            <button type="button" className="login-button" aria-label="Back" style={{ marginTop: '10px'  }}>Back</button>
+          </a>
+        </form>
+        {error && <p className="error-message" role="alert">{error}</p>}
+      </div>
     </div>
   );
 }
