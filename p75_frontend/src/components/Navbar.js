@@ -8,7 +8,7 @@ function Navbar({ token }) {
   const handleLogout = () => {
     localStorage.removeItem('token');
     token();
-    history.push('/login');
+    history.push('/');
   };
 
   return (
